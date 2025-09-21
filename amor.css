@@ -1,0 +1,209 @@
+body {
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+    background: linear-gradient(to bottom right, #ff9aa2, #ffd1dc);
+    font-family: 'Dancing Script', cursive;
+    overflow: auto;
+}
+
+.container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    width: 90vw;
+    max-width: 1200px;
+    margin: 20px auto;
+    padding: 4vw;
+    box-sizing: border-box;
+}
+
+.cake-container {
+    position: relative;
+    width: 50%;
+    height: 60vh;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+}
+
+.cake {
+    position: relative;
+    width: clamp(150px, 40vw, 200px);
+    height: clamp(150px, 40vw, 200px);
+}
+
+.layer {
+    width: 100%;
+    height: clamp(40px, 10vw, 50px);
+    background: linear-gradient(to bottom, #f4c7b0, #f4a261);
+    border-radius: 15px;
+    margin: 2px 0;
+    position: absolute;
+    bottom: 0;
+    box-shadow: inset 0 0 10px rgba(255, 255, 255, 0.3);
+}
+
+.layer:nth-child(1) { height: clamp(40px, 10vw, 50px); bottom: 0; }
+.layer:nth-child(2) { height: clamp(40px, 10vw, 50px); bottom: clamp(42px, 10vw, 52px); }
+.layer:nth-child(3) { height: clamp(40px, 10vw, 50px); bottom: clamp(84px, 20vw, 104px); }
+
+.layer::after {
+    content: '';
+    position: absolute;
+    top: -5px;
+    left: 10px;
+    right: 10px;
+    height: 5px;
+    background: linear-gradient(to bottom, #ffffff, #f0f0f0);
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(255, 255, 255, 0.5);
+}
+
+.candle {
+    position: absolute;
+    top: -45px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: clamp(20px, 5vw, 25px);
+    height: clamp(70px, 18vw, 90px);
+    background: linear-gradient(to top, #ffffff, #f0e68c, #d3a62f);
+    border-radius: 5px 5px 0 0;
+    display: flex;
+    justify-content: center;
+}
+
+.flame {
+    position: absolute;
+    top: -20px;
+    width: clamp(12px, 3vw, 15px);
+    height: clamp(16px, 4vw, 20px);
+    background: linear-gradient(to top, #ffeb3b, #ff9800);
+    border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+    animation: flicker 0.5s infinite alternate;
+}
+
+.dots {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+}
+
+.dot {
+    position: absolute;
+    width: clamp(8px, 2vw, 12px);
+    height: clamp(8px, 2vw, 12px);
+    background: rgba(255, 255, 255, 0.8);
+    border-radius: 50%;
+    animation: float 4s infinite;
+    box-shadow: 0 0 5px rgba(255, 255, 255, 0.5);
+}
+
+#playButton {
+    background-color: #c2185b;
+    color: white;
+    padding: clamp(8px, 2.5vw, 10px) clamp(16px, 4vw, 20px);
+    border: none;
+    border-radius: 5px;
+    font-size: clamp(1rem, 4vw, 1.2rem);
+    cursor: pointer;
+    margin-top: 4vw;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    transition: transform 0.2s, background-color 0.2s;
+}
+
+#playButton:hover {
+    background-color: #a01549;
+    transform: translateY(-2px);
+}
+
+#playButton:disabled {
+    cursor: not-allowed;
+    background-color: #d66787;
+}
+
+@keyframes float {
+    0% { transform: translateY(0) scale(1); }
+    50% { transform: translateY(-30px) scale(1.2); }
+    100% { transform: translateY(0) scale(1); }
+}
+
+@keyframes flicker {
+    0% { transform: scale(1); }
+    100% { transform: scale(1.3); }
+}
+
+#message {
+    width: 45%;
+    font-size: clamp(1rem, 4vw, 1.2rem);
+    font-family: 'Great Vibes', cursive;
+    color: #c2185b;
+    text-align: left;
+    text-shadow: 1px 1px 3px rgba(255, 255, 255, 0.7);
+    line-height: 1.8;
+    padding: 4vw;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 15px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+h2 {
+    margin: 0;
+    font-size: clamp(1.5rem, 5vw, 2rem);
+}
+
+p {
+    margin: 2vw 0;
+}
+
+@media (max-width: 600px) {
+    .container {
+        flex-direction: column;
+        align-items: center;
+        padding: 6vw;
+    }
+
+    .cake-container {
+        width: 100%;
+        height: 40vh;
+        margin-bottom: 4vw;
+    }
+
+    .cake {
+        width: clamp(120px, 50vw, 150px);
+        height: clamp(120px, 50vw, 150px);
+    }
+
+     #message {
+        width: 100%;
+        font-size: clamp(0.9rem, 4.5vw, 1rem);
+        padding: 5vw;
+    }
+
+    h2 {
+        font-size: clamp(1.2rem, 5.5vw, 1.5rem);
+    }
+
+    #playButton {
+        font-size: clamp(0.9rem, 4.5vw, 1rem);
+        padding: clamp(8px, 3vw, 10px) clamp(16px, 5vw, 20px);
+    }
+    .candle {
+    position: absolute;
+    top: -95px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: clamp(20px, 5vw, 25px);
+    height: clamp(70px, 18vw, 90px);
+    background: linear-gradient(to top, #ffffff, #f0e68c, #d3a62f);
+    border-radius: 5px 5px 0 0;
+    display: flex;
+    justify-content: center;
+}
+}
